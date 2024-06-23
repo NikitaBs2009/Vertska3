@@ -2,7 +2,7 @@ import argparse
 import os
 import requests
 from urllib.parse import urljoin, unquote, urlsplit
-
+from time import sleep
 from pathvalidate import sanitize_filename
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -78,6 +78,9 @@ def download_books():
             download_image(book_parameters['image'])
         except requests.exceptions.HTTPError:
             print("Такой книги нет")
+        except requests.exceptions.ConnectionError:
+            print("Попытка повторного подключения к серверу")
+            sleep(20)
 
 
 if __name__ == '__main__':            

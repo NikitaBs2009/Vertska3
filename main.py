@@ -63,8 +63,9 @@ def download_books():
     parser.add_argument('--end_id', type=int, help='Конечнный индекс книги', default=11)
     args = parser.parse_args()
     for number in range(args.start_id, args.end_id):
-        url = f"https://tululu.org/txt.php?id={number}"
-        response = requests.get(url)
+        params = {'id': number}
+        url = f"https://tululu.org/txt.php"
+        response = requests.get(url, params=params)
         try:    
             response.raise_for_status() 
             check_for_redirect(response)

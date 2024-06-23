@@ -77,9 +77,8 @@ def download_books():
             download_image(book_parameters['image'])
         except requests.exceptions.HTTPError:
             print("Такой книги нет")
-download_books()
 
 
-
-
+if __name__ == '__main__':            
+    download_books()
 

@@ -21,13 +21,13 @@ def download_txt(response, filename, folder='books/'):
   
 
 
-def parse_book_page(response, template_url):
+def parse_book_page(response, url):
     soup = BeautifulSoup(response.text, 'lxml')
     title_tag = soup.find(id='content').find('h1')
     title_text = title_tag.text
     book_title, book_author = title_text.split(" :: ")
     image_url = soup.find('div', class_='bookimage').find('img')['src']
-    full_image_url = urljoin(template_url, image_url)
+    full_image_url = urljoin(url, image_url)
     book_comments = soup.find_all('div', class_='texts')
     book_comments_text = [comment_book.find('span', class_='black').text for comment_book in book_comments]
     book_genres = soup.find('span', class_='d_book').find_all('a')

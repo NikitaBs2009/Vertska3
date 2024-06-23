@@ -65,8 +65,8 @@ def download_books():
     for number in range(args.start_id, args.end_id):
         params = {'id': number}
         url = f"https://tululu.org/txt.php"
-        response = requests.get(url, params=params)
-        try:    
+        try:
+            response = requests.get(url, params=params)
             response.raise_for_status() 
             check_for_redirect(response)
             book_url = 'https://tululu.org/b{}/'
